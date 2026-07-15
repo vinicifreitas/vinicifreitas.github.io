@@ -175,6 +175,33 @@ body.fx-off #rain {
   text-overflow: ellipsis;
 }
 
+.lang-switch {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.lang-btn {
+  background: transparent;
+  border: var(--border);
+  color: var(--amber-dim);
+  font-family: var(--mono-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  padding: 0.3rem 0.55rem;
+  cursor: pointer;
+}
+.lang-btn:hover,
+.lang-btn:focus-visible {
+  color: var(--bg);
+  background: var(--amber);
+  outline: none;
+}
+.lang-btn[aria-pressed="true"] {
+  color: var(--bg);
+  background: var(--amber-bright);
+  border-color: var(--amber-bright);
+}
+
 .effects-toggle {
   background: transparent;
   border: var(--border);
@@ -449,6 +476,7 @@ main {
 
 @media (max-width: 480px) {
   main { padding: 1.5rem 1rem 3rem; }
-  .window-title { font-size: 0.78rem; }
   #cmd-input { width: 100%; }
+  .window-bar { flex-wrap: wrap; row-gap: 0.5rem; }
+  .window-title { display: none; }
 }
