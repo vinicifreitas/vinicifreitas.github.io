@@ -1,0 +1,454 @@
+/* ---------------------------------------------------------
+   Vinicius Freitas — terminal / CRT âmbar portfolio
+   Sem build, sem framework. Um arquivo, um tema, um acento.
+--------------------------------------------------------- */
+
+:root {
+  --bg: #0c0900;
+  --bg-raised: #161000;
+  --amber: #ffb000;
+  --amber-dim: rgba(255, 176, 0, 0.55);
+  --amber-faint: rgba(255, 176, 0, 0.22);
+  --amber-bright: #ffd479;
+  --glow: 0 0 6px rgba(255, 176, 0, 0.55), 0 0 14px rgba(255, 176, 0, 0.25);
+  --mono-display: "VT323", monospace;
+  --mono-body: "Share Tech Mono", monospace;
+  --border: 1px solid var(--amber-faint);
+  --max-w: 780px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background: var(--bg);
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--amber);
+  font-family: var(--mono-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--amber);
+  color: var(--bg);
+}
+
+/* ---------- accessibility helpers ---------- */
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--amber);
+  color: var(--bg);
+  padding: 0.5em 1em;
+  z-index: 100;
+  font-family: var(--mono-body);
+}
+.skip-link:focus {
+  left: 0.5em;
+  top: 0.5em;
+}
+
+a {
+  color: var(--amber-bright);
+  text-decoration: none;
+  border-bottom: 1px solid var(--amber-dim);
+}
+a:hover,
+a:focus-visible {
+  color: var(--bg);
+  background: var(--amber);
+  border-color: var(--amber);
+}
+a:focus-visible {
+  outline: 2px solid var(--amber-bright);
+  outline-offset: 2px;
+}
+
+button {
+  font-family: var(--mono-body);
+}
+
+/* ---------- background fx layers ---------- */
+
+#rain {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.16;
+  pointer-events: none;
+}
+
+.crt-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.18),
+    rgba(0, 0, 0, 0.18) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: multiply;
+}
+
+.vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 55%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+body.fx-off .crt-overlay,
+body.fx-off .vignette,
+body.fx-off #rain {
+  display: none;
+}
+
+@keyframes flicker {
+  0%, 96%, 100% { opacity: 1; }
+  97% { opacity: 0.94; }
+  98% { opacity: 1; }
+  99% { opacity: 0.9; }
+}
+
+.crt-frame {
+  position: relative;
+  z-index: 1;
+  animation: flicker 7s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crt-frame { animation: none; }
+}
+
+/* ---------- window chrome ---------- */
+
+.window-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 1rem;
+  background: var(--bg-raised);
+  border-bottom: var(--border);
+}
+
+.window-dots {
+  display: flex;
+  gap: 0.4rem;
+}
+.window-dots span {
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--amber-dim);
+  background: transparent;
+}
+
+.window-title {
+  flex: 1;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  color: var(--amber-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.effects-toggle {
+  background: transparent;
+  border: var(--border);
+  color: var(--amber-dim);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.effects-toggle:hover,
+.effects-toggle:focus-visible {
+  color: var(--bg);
+  background: var(--amber);
+  outline: none;
+}
+
+/* ---------- boot screen ---------- */
+
+#boot-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: var(--bg);
+  color: var(--amber);
+  font-family: var(--mono-body);
+  padding: 2rem;
+  display: flex;
+  align-items: flex-start;
+}
+
+#boot-screen.hidden {
+  display: none;
+}
+
+#boot-log {
+  margin: 0;
+  white-space: pre-wrap;
+  font-size: 0.95rem;
+  text-shadow: var(--glow);
+}
+
+/* ---------- layout ---------- */
+
+main {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+.cmd-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1rem;
+  border-bottom: var(--border);
+  font-size: 0.85rem;
+}
+.cmd-nav a {
+  border-bottom: none;
+  color: var(--amber-dim);
+}
+.cmd-nav a:hover,
+.cmd-nav a:focus-visible {
+  color: var(--bg);
+  background: var(--amber);
+}
+
+.term-block {
+  margin-bottom: 3rem;
+}
+
+.prompt-line {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+}
+
+.prompt {
+  color: var(--amber-bright);
+  text-shadow: var(--glow);
+  margin-right: 0.4rem;
+}
+
+.output-text,
+.output-note {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--amber);
+}
+
+.output-note {
+  color: var(--amber-dim);
+  font-size: 0.85rem;
+  margin-top: 0.6rem;
+}
+
+/* ---------- hero ---------- */
+
+.ascii-name {
+  font-family: var(--mono-display);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 9vw, 4.5rem);
+  line-height: 1;
+  margin: 0.2rem 0 0.6rem;
+  letter-spacing: 0.02em;
+  text-shadow: var(--glow);
+}
+
+.role-line {
+  margin: 0 0 0.4rem;
+  font-size: 1.1rem;
+  color: var(--amber-bright);
+}
+.role-line .sep {
+  color: var(--amber-dim);
+}
+
+.loc-line {
+  margin: 0 0 1.25rem;
+  color: var(--amber-dim);
+  font-size: 0.9rem;
+}
+
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+}
+.hero-links a {
+  border-bottom: none;
+  font-size: 0.95rem;
+}
+
+/* ---------- projects ---------- */
+
+.log-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.log-item {
+  border-left: 2px solid var(--amber-faint);
+  padding-left: 1rem;
+}
+
+.log-role {
+  margin: 0 0 0.15rem;
+  font-size: 1.05rem;
+  color: var(--amber-bright);
+}
+
+.log-tag {
+  font-size: 0.7rem;
+  border: 1px solid var(--amber-dim);
+  padding: 0.05rem 0.4rem;
+  margin-left: 0.5rem;
+  color: var(--amber);
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+
+.log-company {
+  margin: 0 0 0.25rem;
+}
+
+.log-meta {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--amber-dim);
+}
+
+/* ---------- skills / languages ---------- */
+
+.tag-list {
+  list-style: none;
+  margin: 0 0 0.25rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.tag-list li {
+  border: var(--border);
+  padding: 0.3rem 0.7rem;
+  font-size: 0.9rem;
+}
+.tag-level {
+  color: var(--amber-dim);
+}
+
+/* ---------- contact ---------- */
+
+.contact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.contact-key {
+  display: inline-block;
+  width: 6.5em;
+  color: var(--amber-dim);
+}
+.contact-list a {
+  border-bottom: 1px solid var(--amber-dim);
+}
+
+/* ---------- interactive console ---------- */
+
+.console-block {
+  border-top: var(--border);
+  padding-top: 1.5rem;
+}
+
+#cmd-input {
+  background: transparent;
+  border: none;
+  color: var(--amber-bright);
+  font-family: var(--mono-body);
+  font-size: 1rem;
+  caret-color: transparent;
+  width: min(60%, 320px);
+  text-shadow: var(--glow);
+}
+#cmd-input:focus {
+  outline: none;
+}
+
+.cursor {
+  color: var(--amber-bright);
+  animation: blink 1s steps(1) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cursor { animation: none; }
+}
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+#cmd-output {
+  margin: 0.75rem 0 0;
+  min-height: 1.4em;
+  font-size: 0.9rem;
+  color: var(--amber-dim);
+  white-space: pre-wrap;
+  font-family: var(--mono-body);
+}
+
+/* ---------- footer ---------- */
+
+.term-footer {
+  border-top: var(--border);
+  padding: 1.25rem 1.25rem 2rem;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  font-size: 0.78rem;
+  color: var(--amber-dim);
+}
+.term-footer .sep {
+  opacity: 0.6;
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 480px) {
+  main { padding: 1.5rem 1rem 3rem; }
+  .window-title { font-size: 0.78rem; }
+  #cmd-input { width: 100%; }
+}

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vinicius Freitas — Founder &amp; Builder</title>
+<meta name="description" content="Vinicius Freitas — Founder @ VerticeOn, builder e investidor. Portfólio pessoal em formato de terminal retrô.">
+<meta name="theme-color" content="#0c0800">
+
+<meta property="og:title" content="Vinicius Freitas — Founder & Builder">
+<meta property="og:description" content="Founder @ VerticeOn. Builder & Investor. Portfólio em formato de terminal retrô.">
+<meta property="og:type" content="website">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230c0800'/%3E%3Ctext x='50' y='68' font-size='60' text-anchor='middle' fill='%23ffb000' font-family='monospace'%3E%3E_%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Pular para o conteúdo</a>
+
+<canvas id="rain" aria-hidden="true"></canvas>
+<div class="crt-overlay" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<div id="boot-screen" role="status" aria-live="polite">
+  <pre id="boot-log"></pre>
+</div>
+
+<div class="crt-frame">
+  <header class="window-bar">
+    <div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="window-title">guest@vinicius&nbsp;~&nbsp;portfolio</div>
+    <button id="effects-toggle" class="effects-toggle" type="button" aria-pressed="true">
+      efeitos: <span id="effects-state">ON</span>
+    </button>
+  </header>
+
+  <main id="main">
+
+    <nav class="cmd-nav" aria-label="Navegação rápida">
+      <a href="#sobre">cd sobre</a>
+      <a href="#projetos">cd projetos</a>
+      <a href="#skills">cd skills</a>
+      <a href="#contato">cd contato</a>
+    </nav>
+
+    <section id="hero" class="term-block">
+      <p class="prompt-line"><span class="prompt">guest@vinicius:~$</span> whoami</p>
+      <h1 class="ascii-name">VINICIUS FREITAS</h1>
+      <p class="role-line">Founder @VerticeOn <span class="sep">//</span> Builder &amp; Investor</p>
+      <p class="loc-line">&gt; localizado em: Brasil</p>
+      <div class="hero-links">
+        <a href="https://www.linkedin.com/in/vinicifreitas/" target="_blank" rel="noopener noreferrer">[ LinkedIn ]</a>
+        <a href="https://github.com/vinicifreitas" target="_blank" rel="noopener noreferrer">[ GitHub ]</a>
+        <a href="https://wa.me/5534997820782" target="_blank" rel="noopener noreferrer">[ WhatsApp ]</a>
+      </div>
+    </section>
+
+    <section id="sobre" class="term-block">
+      <p class="prompt-line"><span class="prompt">guest@vinicius:~$</span> cat sobre.txt</p>
+      <p class="output-text">
+        Founder da Vértice On - Growth Systems &amp; AI, construindo sistemas de crescimento e produtos com IA
+        do zero — da arquitetura ao growth.
+      </p>
+    </section>
+
+    <section id="projetos" class="term-block">
+      <p class="prompt-line"><span class="prompt">guest@vinicius:~$</span> ls -la ./projetos/</p>
+
+      <ul class="log-list">
+        <li class="log-item">
+          <p class="log-role">Vértice On - Growth Systems &amp; AI<span class="log-tag">ativo</span></p>
+          <p class="log-company">Cuidamos da sua infraestrutura de crescimento de negócios com IA</p>
+          <p class="log-meta">Founder · jul de 2023 – atual</p>
+        </li>
+        <li class="log-item">
+          <p class="log-role">Macto <span class="log-tag">open source</span></p>
+          <p class="log-company">Gestão de campanhas de marketing — gerenciamento, análise e otimização em um só lugar.</p>
+          <p class="log-meta">Next.js · TypeScript · Tailwind CSS</p>
+          <p class="log-meta"><a href="https://github.com/vinicifreitas/macto" target="_blank" rel="noopener noreferrer">[ Ver no GitHub ]</a></p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="skills" class="term-block">
+      <p class="prompt-line"><span class="prompt">guest@vinicius:~$</span> skills --list</p>
+      <ul class="tag-list">
+        <li>Empreendedorismo</li>
+        <li>Criação de produtos</li>
+        <li>Segurança e Pentest</li>
+      </ul>
+      <p class="output-note">&gt; +7 competências listadas no LinkedIn</p>
+
+      <p class="prompt-line"><span class="prompt">guest@vinicius:~$</span> lang --list</p>
+      <ul class="tag-list">
+        <li>Português <span class="tag-level">— nível nativo/fluente</span></li>
+        <li>English <span class="tag-level">— nível avançado</span></li>
+        <li>Chinês <span class="tag-level">— nível básico</span></li>
+      </ul>
+      <!-- <p class="output-note">&gt; +1 idioma listado no LinkedIn</p> -->
+    </section>
+
+    <section id="contato" class="term-block">
+      <p class="prompt-line"><span class="prompt">guest@vinicius:~$</span> cat contato.txt</p>
+      <ul class="contact-list">
+        <li><span class="contact-key">linkedin</span> <a href="https://www.linkedin.com/in/vinicifreitas/" target="_blank" rel="noopener noreferrer">linkedin.com/in/vinicifreitas</a></li>
+        <li><span class="contact-key">github</span> <a href="https://github.com/vinicifreitas" target="_blank" rel="noopener noreferrer">github.com/vinicifreitas</a></li>
+        <li><span class="contact-key">whatsapp</span> <a href="https://wa.me/5534997820782" target="_blank" rel="noopener noreferrer">Fale comigo pelo WhatsApp</a></li>
+      </ul>
+    </section>
+
+    <section class="term-block console-block">
+      <p class="prompt-line">
+        <span class="prompt">guest@vinicius:~$</span>
+        <input id="cmd-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false"
+               aria-label="Terminal de comandos. Digite help para ver os comandos disponíveis."
+               placeholder="digite 'help'">
+        <span class="cursor" aria-hidden="true">█</span>
+      </p>
+      <pre id="cmd-output" aria-live="polite"></pre>
+    </section>
+
+  </main>
+
+  <footer class="term-footer">
+    <p>© <span id="year"></span> Vinicius Freitas <span class="sep">//</span> Founder & Builder</p>
+  </footer>
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
